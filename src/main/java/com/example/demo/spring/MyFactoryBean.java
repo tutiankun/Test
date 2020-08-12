@@ -1,4 +1,4 @@
-package com.example.demo.test;
+package com.example.demo.spring;
 
 import com.example.demo.bean.Car;
 import org.springframework.beans.factory.FactoryBean;

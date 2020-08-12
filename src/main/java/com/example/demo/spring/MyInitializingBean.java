@@ -1,4 +1,4 @@
-package com.example.demo.test;
+package com.example.demo.spring;
 
 import com.example.demo.Interface.Hello;
 import com.example.demo.myAbstract.MyAware;
