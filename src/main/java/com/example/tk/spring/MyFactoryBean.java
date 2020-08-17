@@ -1,6 +1,6 @@
 package com.example.tk.spring;
 
-import com.example.tk.bean.Car;
+import com.example.tk.vo.Car;
 import org.springframework.beans.factory.FactoryBean;
 
 public class MyFactoryBean implements FactoryBean<Car> {
