@@ -1,4 +1,4 @@
-package com.example.tk.bean;
+package com.example.tk.vo;
 
 import lombok.Data;
 
