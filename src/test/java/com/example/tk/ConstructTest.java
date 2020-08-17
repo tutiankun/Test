@@ -4,7 +4,7 @@ import com.example.tk.service.ConstructService;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-public class constructTest extends BaseTest {
+public class ConstructTest extends BaseTest {
     @Autowired
     private ConstructService constructService;
 
