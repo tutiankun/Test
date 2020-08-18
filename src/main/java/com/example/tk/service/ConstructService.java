@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Map;
 
 @Service
-public class ConstructService implements InitializingBean {
+public class ConstructService {
     private HashMap<String,Hello> map=new HashMap<>();
 
     @Autowired
@@ -24,20 +24,6 @@ public class ConstructService implements InitializingBean {
         }
     }
 
-
-    @Override
-    public void afterPropertiesSet()  {
-        Map<String, Hello> beansOfType = applicationContext.getBeansOfType(Hello.class);
-        for (Map.Entry<String, Hello> entry : beansOfType.entrySet()) {
-            String key = entry.getKey();
-            System.out.println("key:"+key);
-            Hello hello = entry.getValue();
-            String type = hello.type();
-            System.out.println("type:"+type);
-            hello.say();
-        }
-    }
-
     public void test(){
         for (String s : map.keySet()) {
             System.out.println("s:"+s);
@@ -45,6 +31,20 @@ public class ConstructService implements InitializingBean {
             hello.say();
         }
     }
+
+    public Integer testTry(){
+       try {
+           int a=1/0;
+           return 1;
+
+       }catch (Exception e){
+           return 2;
+       }finally {
+           return 0;
+       }
+
+    }
+
 
 
 
