@@ -13,4 +13,10 @@ public class ConstructTest extends BaseTest {
         constructService.test();
     }
 
+    @Test
+    public void testTry(){
+        Integer integer = constructService.testTry();
+        System.out.println(integer);
+    }
+
 }
