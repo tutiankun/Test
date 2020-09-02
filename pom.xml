@@ -17,10 +17,20 @@
     <properties>
         <!--如果POM是继承spring-boot-starter-parent,只需指定start-class-->
         <start-class>com.example.tk.TkApplication</start-class>
+        <!-- 不跳过单元测试，跳过集成测试，通过包名命名 -->
+        <maven.test.skip>false</maven.test.skip>
     </properties>
 
     <dependencies>
 
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
+        </dependency>
+<!--        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-cache</artifactId>
+        </dependency>-->
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
@@ -45,5 +55,23 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
+
+    <build>
+        <plugins>
+            <!-- 默认只对 unit 包下面的代码进行单元测试 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.19.1</version>
+                <configuration>
+                    <!-- 不编译也不测试 -->
+                    <skip>${maven.test.skip}</skip>
+                    <includes>
+                        <include>**/unit/**/*.java</include>
+                    </includes>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>
