@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
 
+import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -39,7 +40,7 @@ public class RedisService {
      * @param key 键 不能为null
      * @return 时间(秒) 返回0代表为永久有效
      */
-    public long getExpire(String key) {
+    public Long getExpire(String key) {
         return redisTemplate.getExpire(key, TimeUnit.SECONDS);
     }
 
@@ -88,6 +89,18 @@ public class RedisService {
             e.printStackTrace();
             return false;
         }
+    }
+
+    /**
+     * 根据key 更新key的值,过期时间不变
+     *
+     */
+    public boolean updateValue(String key, Object value) {
+        Long expire = getExpire(key);
+        if (expire == null){
+            return false;
+        }
+        return set(key,value,expire);
     }
 
 
