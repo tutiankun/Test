@@ -39,11 +39,11 @@ public class CurrentLimitInterceptor implements HandlerInterceptor {
             HandlerMethod handlerMethod = (HandlerMethod) handler;
             //通过HandlerMethod获取方法CurrentLimit注解
             CurrentLimit currentLimit = handlerMethod.getMethodAnnotation(CurrentLimit.class);
-            //如果此方法存在限流注解
+            //如果此方法不存在限流注解,直接放行
             if (Objects.isNull(currentLimit)){
-                return false;
+                return true;
             }
-            RLock lock = redissonClient.getLock(key);
+            RLock lock = redissonClient.getLock(key+SEPARATOR+request.getServletPath());
             try {
                 boolean tryLock = lock.tryLock(5, 6, TimeUnit.SECONDS);
                 if (tryLock){
