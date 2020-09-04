@@ -1,5 +1,6 @@
 package com.example.tk.currentLimit;
 
+import com.example.tk.exception.BaseException;
 import com.example.tk.service.RedisService;
 import lombok.extern.slf4j.Slf4j;
 import org.redisson.api.RLock;
@@ -33,7 +34,7 @@ public class CurrentLimitInterceptor implements HandlerInterceptor {
      * 加synchronized也无法解决分布式项目部署环境下redis读脏的问题
      */
     @Override
-    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
+    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         if (handler instanceof HandlerMethod) {
             HandlerMethod handlerMethod = (HandlerMethod) handler;
             //通过HandlerMethod获取方法CurrentLimit注解
@@ -62,7 +63,7 @@ public class CurrentLimitInterceptor implements HandlerInterceptor {
                         }
                         //如果访问次数大于注解设定则抛出异常
                         if (numberRedis >= number) {
-                            throw new RuntimeException("请求频繁，请稍后重试！");
+                            throw new BaseException("请求频繁，请稍后重试！");
                         }
                         //如果满足限流条件则更新缓存次数
                         redisService.updateValue(key, numberRedis + 1);
@@ -71,6 +72,7 @@ public class CurrentLimitInterceptor implements HandlerInterceptor {
                 }
             }catch (Exception e){
                 log.error("限流异常",e);
+                throw e;
             }finally {
                 lock.unlock();
             }
