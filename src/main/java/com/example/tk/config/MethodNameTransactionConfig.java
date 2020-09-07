@@ -18,7 +18,7 @@ import java.util.List;
 @Configuration
 public class MethodNameTransactionConfig {
 
-    private static final String DEFAULT_POINTCUT_EXPRESSION = "execution(* com.ttpai..service..*.*(..))";
+    private static final String DEFAULT_POINTCUT_EXPRESSION = "execution(* com.example.tk..service..*.*(..))";
 
     @Primary
     @Bean(name = "dataSourceTransactionManager")
