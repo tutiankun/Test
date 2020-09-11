@@ -10,7 +10,7 @@ import org.springframework.context.annotation.PropertySources;
 @PropertySources(value = {
         @PropertySource("classpath:jdbc.properties")
 })
-@MapperScan(basePackages = "com.example.tk.Mapper")
+@MapperScan(basePackages = "com.example.tk.mapper")
 public class TkApplication {
 
     public static void main(String[] args) {

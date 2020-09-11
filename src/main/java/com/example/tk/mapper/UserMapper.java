@@ -1,6 +1,4 @@
-package com.example.tk.Mapper;
-
-import org.apache.ibatis.annotations.Select;
+package com.example.tk.mapper;
 
 public interface UserMapper {
 
