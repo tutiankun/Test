@@ -46,9 +46,10 @@ public class ThreadPoolService extends AbstractThreadPool {
 
     @Override
     public void destroyThreadPool(ExecutorService executorService) {
-        if (executorService != null) {
-            executorService.shutdown();
+        if (executorService==null){
+            return;
         }
+        executorService.shutdown();
         try {
             if (!executorService.awaitTermination(AWAIT_TIME, TimeUnit.MILLISECONDS)) {
                 // 超时的时候向线程池中所有的线程发出中断(interrupted)。
