@@ -1,6 +1,10 @@
 package com.example.tk;
 
+import com.example.tk.vo.Person;
+import com.google.common.collect.Lists;
 import org.junit.Test;
+
+import java.util.List;
 
 public class commonTest {
 
@@ -10,5 +14,16 @@ public class commonTest {
         System.out.println(key);
 
     }
+
+    @Test
+    public void test2(){
+        List<Person> people = get();
+        System.out.println(people);
+    }
+
+    public List<Person> get(){
+       return Lists.newArrayList();
+    }
+
 
 }
