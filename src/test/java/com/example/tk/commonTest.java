@@ -1,9 +1,11 @@
 package com.example.tk;
 
+import com.example.tk.vo.Car;
 import com.example.tk.vo.Person;
 import com.google.common.collect.Lists;
 import org.junit.Test;
 
+import java.util.HashMap;
 import java.util.List;
 
 public class commonTest {
@@ -23,6 +25,10 @@ public class commonTest {
 
     public List<Person> get(){
        return Lists.newArrayList();
+    }
+
+    @Test
+    public void test3(){
     }
 
 
