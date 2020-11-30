@@ -5,10 +5,10 @@ import com.example.tk.vo.Person;
 import com.google.common.collect.Lists;
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.*;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 public class commonTest {
@@ -41,7 +41,6 @@ public class commonTest {
             System.out.println("i="+i);
         }
         System.out.println("测试");
-
     }
 
     @Test
@@ -50,6 +49,59 @@ public class commonTest {
         list=null;
         Map<Integer, String> map = list.stream().collect(Collectors.toMap(Person::getAge, Person::getName));
         System.out.println(map);
+
+    }
+
+    @Test
+    public void test4(){
+        testResult();
+    }
+
+    public  boolean testResult() {
+
+        for (int j=0;j<3;j++){
+            for(int i=1; i<=5; i++) {
+                System.out.println("-------------->开始：" + i);
+                if(i == 3) {
+                    return true;
+                }
+                System.out.println("-------------->结束：" + i);
+            }
+        }
+        return true;
+    }
+
+    @Test
+    public void test5(){
+        String time = "2020/02:13";
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+        Date date = null;
+        try {
+            date = sdf.parse(time);
+            System.out.println(date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    @Test
+    public void test6(){
+        ArrayList<String> list1 = new ArrayList<>();
+        list1.add("1");
+        list1.add("2");
+        list1.add("3");
+        ArrayList<String> list2 = new ArrayList<>();
+        list2.add("2");
+        list2.add("3");
+        list2.add("4");
+        Map<String, String> tempMap = list2.parallelStream().collect
+                (Collectors.toMap(Function.identity(), Function.identity(), (oldData, newData) -> newData));
+        List<String> list3 = list1.parallelStream().filter(str ->
+                !tempMap.containsKey(str)
+        ).collect(Collectors.toList());
+        list3.forEach(s -> System.out.println(s));
+
 
     }
 
