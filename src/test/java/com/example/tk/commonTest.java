@@ -101,9 +101,29 @@ public class commonTest {
                 !tempMap.containsKey(str)
         ).collect(Collectors.toList());
         list3.forEach(s -> System.out.println(s));
+    }
+
+    @Test
+    public void tes7(){
+        ArrayList<Person> list = new ArrayList<>();
+        Person person1 = new Person("a",1,true,"USA");
+        Person person2 = new Person("a",3,true,"USA");
+        Person person3 = new Person("b",5,true,"CHINA");
+        list.add(person1);
+        list.add(person2);
+        list.add(person3);
+        Map<String, Integer> integerMap = list.stream().collect(Collectors.toMap(s->s.getName()+"&"+s.getCountry(),
+                Person::getAge,(key1 , key2)->key1+key2));
+
+        integerMap.entrySet().forEach(item->
+            System.out.println("key:"+item.getKey() +" value:"+item.getValue())
+        );
+
 
 
     }
+
+
 
 
 
