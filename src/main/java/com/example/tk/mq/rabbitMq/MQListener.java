@@ -2,6 +2,7 @@ package com.example.tk.mq.rabbitMq;
 
 import com.rabbitmq.client.Channel;
 import org.springframework.amqp.core.Message;
+import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.listener.api.ChannelAwareMessageListener;
 
 /**
@@ -42,7 +43,7 @@ public interface MQListener<T> extends ChannelAwareMessageListener {
     void onErrorHandler(Exception e, Message message, Channel channel);
 
     /**
-     *
+     * 消费异常枚举
      * @param typeEnum
      */
     void setTypeEnum(ProcessTypeEnum typeEnum);
@@ -53,6 +54,42 @@ public interface MQListener<T> extends ChannelAwareMessageListener {
      * @param exceptionQueue
      */
     default void setExceptionQueue(String exceptionQueue) {}
+
+    /**
+     * 获取消息连接工厂
+     * @return
+     */
+    ConnectionFactory getConnectionFactory();
+
+    /**
+     * 设置连接工厂
+     * @param connectionFactory
+     */
+    void setConnectionFactory(ConnectionFactory connectionFactory);
+
+    /**
+     * 获取消费队列
+     * @return
+     */
+    String getQueue();
+
+    /**
+     * 设置连接工厂
+     * @param queue
+     */
+    void setQueue(String queue);
+
+    /**
+     * 设置并发消费数量
+     * @param count
+     */
+    void setConcurrentConsumers(Integer count);
+
+    /**
+     * 获取并发消费数量
+     * @return
+     */
+    Integer getConcurrentConsumers();
 
 
 }

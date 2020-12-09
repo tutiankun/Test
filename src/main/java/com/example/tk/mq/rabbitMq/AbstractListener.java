@@ -7,6 +7,7 @@ import com.rabbitmq.client.Channel;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.core.Message;
 import org.springframework.amqp.core.MessageProperties;
+import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.util.StringUtils;
 
@@ -21,8 +22,12 @@ import java.util.concurrent.atomic.AtomicInteger;
 @Slf4j
 public abstract class AbstractListener<T> implements MQListener<T> {
     private AtomicInteger errorCount = new AtomicInteger(0);
-    private String exceptionQueue;
-    private ProcessTypeEnum typeEnum;
+    private String exceptionQueue;//异常队列
+    private ProcessTypeEnum typeEnum;//异常处理策略,默认重回队尾
+    private String queue;//消费队列
+    private ConnectionFactory connectionFactory;//连接工厂
+    private Integer concurrentConsumers=1;//默认并发消费数量1,支持手动配置
+
 
     public AbstractListener() {
     }
@@ -36,7 +41,8 @@ public abstract class AbstractListener<T> implements MQListener<T> {
                 throw new Exception("消息为空");
             }
             T obj = this.convertMessage(msgStr);
-                this.listener(obj);
+            this.listener(obj);
+            this.setProcessTypeEnum();
             this.errorCount.set(0);
             long deliveryTag = message.getMessageProperties().getDeliveryTag();
             channel.basicAck(deliveryTag, false);
@@ -139,6 +145,33 @@ public abstract class AbstractListener<T> implements MQListener<T> {
             return errorCount < 50 ? 5000L : 10000L;
         }
     }
+
+
+    public ConnectionFactory getConnectionFactory() {
+        return this.connectionFactory;
+    }
+
+    public void setConnectionFactory(ConnectionFactory connectionFactory) {
+        this.connectionFactory = connectionFactory;
+    }
+
+    public String getQueue() {
+        return this.queue;
+    }
+
+    public void setQueue(String queue) {
+        this.queue = queue;
+    }
+
+    public Integer getConcurrentConsumers() {
+        return this.concurrentConsumers;
+    }
+
+    public void setConcurrentConsumers(Integer count) {
+        this.concurrentConsumers = count;
+    }
+
+
 
 
 }
