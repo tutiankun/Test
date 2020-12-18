@@ -1,5 +1,6 @@
-package com.example.tk.mq.rabbitMq;
+package com.example.tk.mq.rabbitmq;
 
+import com.example.tk.mq.rabbitmq.util.ContextUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer;
 import org.springframework.context.ApplicationListener;
@@ -14,7 +15,6 @@ import java.util.concurrent.atomic.AtomicBoolean;
  * 容器关闭关闭监听
  */
 @Slf4j
-@Component
 public class MQListenerContainerClose implements ApplicationListener<ContextClosedEvent> {
 
     private final AtomicBoolean shutdowned = new AtomicBoolean(false);

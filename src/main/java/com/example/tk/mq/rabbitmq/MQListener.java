@@ -1,4 +1,4 @@
-package com.example.tk.mq.rabbitMq;
+package com.example.tk.mq.rabbitmq;
 
 import com.rabbitmq.client.Channel;
 import org.springframework.amqp.core.Message;
@@ -26,13 +26,6 @@ public interface MQListener<T> extends ChannelAwareMessageListener {
      * @throws Exception
      */
     T convertMessage(String message) throws Exception;
-
-    /**
-     * 业务处理
-     * @param t
-     * @throws Exception
-     */
-    void listener(T t) throws Exception;
 
     /**
      * 消费异常处理
@@ -79,17 +72,15 @@ public interface MQListener<T> extends ChannelAwareMessageListener {
      */
     void setQueue(String queue);
 
-    /**
-     * 设置并发消费数量
-     * @param count
-     */
-    void setConcurrentConsumers(Integer count);
 
     /**
-     * 获取并发消费数量
-     * @return
+     * 设置bean名称便于排查问题
+     * @param beanName
      */
-    Integer getConcurrentConsumers();
+    void setBeanName(String beanName);
+
+
+
 
 
 }

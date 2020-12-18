@@ -1,4 +1,4 @@
-package com.example.tk.mq.rabbitMq;
+package com.example.tk.mq.rabbitmq.util;
 
 import com.google.common.collect.Maps;
 import org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer;
