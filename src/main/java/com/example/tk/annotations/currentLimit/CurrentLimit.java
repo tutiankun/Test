@@ -1,4 +1,4 @@
-package com.example.tk.currentLimit;
+package com.example.tk.annotations.currentLimit;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

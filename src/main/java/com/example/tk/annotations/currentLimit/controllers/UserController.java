@@ -1,4 +1,4 @@
-package com.example.tk.controllers;
+package com.example.tk.annotations.currentLimit.controllers;
 
 import com.example.tk.designMode.Singleton;
 import com.example.tk.service.UserService;

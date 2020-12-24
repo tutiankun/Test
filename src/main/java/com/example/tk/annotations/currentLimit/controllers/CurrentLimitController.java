@@ -1,7 +1,7 @@
-package com.example.tk.controllers;
+package com.example.tk.annotations.currentLimit.controllers;
 
-import com.example.tk.currentLimit.CurrentLimit;
-import com.example.tk.currentLimit.LxRateLimit;
+import com.example.tk.annotations.currentLimit.CurrentLimit;
+import com.example.tk.annotations.currentLimit.LxRateLimit;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

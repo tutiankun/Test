@@ -1,4 +1,4 @@
-package com.example.tk.currentLimit;
+package com.example.tk.annotations.currentLimit;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;

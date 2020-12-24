@@ -1,4 +1,4 @@
-package com.example.tk.currentLimit;
+package com.example.tk.annotations.currentLimit;
 
 import com.example.tk.exception.BaseException;
 import com.example.tk.service.RedisService;

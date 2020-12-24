@@ -1,4 +1,4 @@
-package com.example.tk.annotation.Task;
+package com.example.tk.annotations.task;
 
 public abstract class AbstractTask {
 

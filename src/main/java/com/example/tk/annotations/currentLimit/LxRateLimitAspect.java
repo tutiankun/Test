@@ -1,4 +1,4 @@
-package com.example.tk.currentLimit;
+package com.example.tk.annotations.currentLimit;
 
 import com.google.common.util.concurrent.RateLimiter;
 import lombok.extern.slf4j.Slf4j;
@@ -26,7 +26,7 @@ public class LxRateLimitAspect {
      * 2、带有指定注解切入
      */
     //@Pointcut("execution(* com.example.tk..controllers..*.*(..))")
-    @Pointcut("@annotation(com.example.tk.currentLimit.LxRateLimit)")
+    @Pointcut("@annotation(com.example.tk.annotations.currentLimit.LxRateLimit)")
     public void checkPointcut() { }
 
     @ResponseBody

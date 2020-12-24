@@ -1,5 +1,5 @@
 
-package com.example.tk.annotation.Task;
+package com.example.tk.annotations.task;
 import java.lang.annotation.*;
 
 @Target({ElementType.METHOD})
