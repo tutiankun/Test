@@ -4,11 +4,13 @@ import com.example.tk.vo.Car;
 import com.example.tk.vo.Person;
 import com.google.common.collect.Lists;
 import org.junit.Test;
+import org.springframework.util.StringUtils;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.function.Function;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 public class commonTest {
@@ -118,10 +120,23 @@ public class commonTest {
         integerMap.entrySet().forEach(item->
             System.out.println("key:"+item.getKey() +" value:"+item.getValue())
         );
-
-
+    }
+    @Test
+    public void test8(){
+        String transferCode="1";
+        String transferCodeValue="1";
+        boolean transferNewFlag = StringUtils.isEmpty(transferCode) || !StringUtils.isEmpty(transferCodeValue);
+        System.out.println(transferNewFlag);
 
     }
+    @Test
+    public  void isNumeric(){
+        String str="7777a";
+        Pattern pattern = Pattern.compile("[0-9]*");
+        boolean matches = pattern.matcher(str).matches();
+        System.out.println(matches);
+    }
+
 
 
 
